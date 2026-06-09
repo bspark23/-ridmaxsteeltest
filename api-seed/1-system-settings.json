@@ -1,0 +1,88 @@
+{
+  "siteName": "Ridmax Steel",
+  "siteDescription": "Ridmax Steel — Nigeria's trusted supplier of premium quality steel products and services for construction, manufacturing, and infrastructure.",
+  "siteLogo": "https://ridmaxsteel.com/images/logo.svg",
+  "siteIcon": "https://ridmaxsteel.com/images/icon.svg",
+  "siteUrl": "https://ridmaxsteel.com",
+  "siteSlogan": "Building Nigeria's Future with Premium Steel",
+  "siteGraphImage": "https://ridmaxsteel.com/images/og-image.jpg",
+  "siteKeywords": [
+    "steel",
+    "iron rods",
+    "roofing sheets",
+    "Nigeria",
+    "construction materials",
+    "Ridmax Steel"
+  ],
+  "siteAuthor": "Ridmax Steel",
+  "siteLocale": "en_NG",
+  "siteType": "website",
+  "ogTitle": "Ridmax Steel — Nigeria's Premium Steel Supplier",
+  "ogDescription": "Quality steel products and services for construction and manufacturing across Nigeria.",
+  "ogImage": "https://ridmaxsteel.com/images/og-image.jpg",
+  "ogImageAlt": "Ridmax Steel",
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@ridmaxsteel",
+  "twitterCreator": "@ridmaxsteel",
+  "twitterTitle": "Ridmax Steel — Nigeria's Premium Steel Supplier",
+  "twitterDescription": "Quality steel products and services for construction and manufacturing across Nigeria.",
+  "twitterImage": "https://ridmaxsteel.com/images/og-image.jpg",
+  "maintenanceMode": false,
+  "headerLinks": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Products", "href": "/products" },
+    { "label": "Services", "href": "/services" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Contact Us", "href": "/contact", "isButton": true }
+  ],
+  "footerLinks": [
+    {
+      "section": "Quick Links",
+      "links": [
+        { "label": "Home", "href": "/" },
+        { "label": "About Us", "href": "/about" },
+        { "label": "Our Products", "href": "/products" },
+        { "label": "Our Services", "href": "/services" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    {
+      "section": "Our Services",
+      "links": [
+        { "label": "Import & Export", "href": "/services" },
+        { "label": "Distribution & Supply", "href": "/services" },
+        { "label": "Welding & Fabrication", "href": "/services" },
+        { "label": "Technical Consultation", "href": "/services" }
+      ]
+    },
+    {
+      "section": "Contact Us",
+      "links": [
+        { "label": "Email Us", "href": "mailto:contact.ridmaxsteel@gmail.com" },
+        { "label": "+234 704 758 7807", "href": "tel:+2347047587807" },
+        { "label": "+234 816 807 9241", "href": "tel:+2348168079241" }
+      ]
+    }
+  ],
+  "socialLinks": [
+    { "label": "Facebook", "href": "https://www.facebook.com/ridmaxsteel", "target": "_blank" },
+    { "label": "Instagram", "href": "https://www.instagram.com/ridmaxsteel", "target": "_blank" },
+    { "label": "X", "href": "https://x.com/ridmaxsteel", "target": "_blank" },
+    { "label": "WhatsApp", "href": "https://wa.me/2347047587807", "target": "_blank" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/company/ridmaxsteel", "target": "_blank" }
+  ],
+  "contact": {
+    "email": "contact.ridmaxsteel@gmail.com",
+    "phones": ["+234 704 758 7807", "+234 816 807 9241", "+234 706 709 4900", "+234 706 937 7829", "+234 708 825 4965"],
+    "whatsappPhone": "+2347047587807",
+    "addresses": [
+      {
+        "country": "Nigeria",
+        "phone": "+234 704 758 7807",
+        "address": "Zion Junction, Off Ajegunle Owode Onirin, Along Ikorodu, Lagos State, Nigeria"
+      }
+    ],
+    "map": ""
+  }
+}
