@@ -206,7 +206,7 @@ export default function HomePage() {
     <div className="overflow-x-hidden">
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gray-900">
-        {/* Background image — no colour overlay, just a subtle dark vignette for text legibility */}
+        {/* Background image only — no tint or overlay */}
         {hero.image ? (
           <div className="absolute inset-0">
             <Image
@@ -217,8 +217,6 @@ export default function HomePage() {
               sizes="100vw"
               className="object-cover object-center"
             />
-            {/* Soft dark vignette on the left so text remains readable */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
           </div>
         ) : null}
 
@@ -231,14 +229,14 @@ export default function HomePage() {
               <span>Products</span>
             </div>
 
-            {/* Headline — highlighted word in amber */}
+            {/* Headline — highlighted word on its own line */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
               {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
                 <>
                   <span className="text-primary">
                     {hero.title.split(hero.subtitle ?? "Premium Steel")[0]}
                   </span>
-                  <span className="text-white">
+                  <span className="mt-1 block text-secondary">
                     {hero.subtitle ?? "Premium Steel"}
                   </span>
                   {hero.title.split(hero.subtitle ?? "Premium Steel")[1]}
