@@ -205,7 +205,7 @@ export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gray-900">
+      <section className="relative min-h-[84vh] flex items-start overflow-hidden bg-gray-900">
         {/* Background image only — no tint or overlay */}
         {hero.image ? (
           <div className="absolute inset-0">
@@ -220,7 +220,7 @@ export default function HomePage() {
           </div>
         ) : null}
 
-        <div className="relative mx-auto container px-6 py-32 pt-36">
+        <div className="relative mx-auto container px-6 py-20 pt-24 sm:py-16 sm:pt-20">
           <div className="ml-auto flex w-full max-w-xl flex-col items-end text-right">
             {/* Breadcrumb overline */}
             <div className="flex items-center justify-end gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
