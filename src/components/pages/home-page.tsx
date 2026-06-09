@@ -246,7 +246,7 @@ export default function HomePage() {
               )}
             </h1>
 
-            <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed max-w-md">
+            <p className="mt-5 text-base sm:text-lg text-primary leading-relaxed max-w-md">
               {hero.body ?? ""}
             </p>
 
