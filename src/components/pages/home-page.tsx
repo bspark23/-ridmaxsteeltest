@@ -221,16 +221,16 @@ export default function HomePage() {
         ) : null}
 
         <div className="relative mx-auto container px-6 py-20 pt-24 sm:py-16 sm:pt-20">
-          <div className="ml-auto flex w-full max-w-xl flex-col items-end text-right">
+          <div className="ml-auto flex w-full max-w-xl flex-col items-start text-left">
             {/* Breadcrumb overline */}
-            <div className="flex items-center justify-end gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
+            <div className="flex items-center justify-start gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
               <span>Home</span>
               <span>/</span>
               <span>Products</span>
             </div>
 
             {/* Headline — highlighted word on its own line */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+            <h1 className="text-left text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
               {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
                 <>
                   <span className="text-primary">
@@ -246,12 +246,12 @@ export default function HomePage() {
               )}
             </h1>
 
-            <p className="mt-5 text-base sm:text-lg text-primary leading-relaxed max-w-md">
+            <p className="mt-5 text-left text-base sm:text-lg text-primary leading-relaxed max-w-md">
               {hero.body ?? ""}
             </p>
 
             {/* CTA buttons */}
-            <div className="mt-8 flex flex-wrap justify-end gap-3">
+            <div className="mt-8 flex flex-wrap justify-start gap-3">
               {(hero.buttons ?? [hero.button]).filter(Boolean).map((btn, i) =>
                 btn ? (
                   <Button
