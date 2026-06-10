@@ -205,7 +205,7 @@ export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[84vh] flex items-start overflow-hidden bg-gray-900">
+      <section className="relative min-h-[105vh] flex items-start overflow-hidden bg-gray-900">
         {/* Background image only — no tint or overlay */}
         {hero.image ? (
           <div className="absolute inset-0">
@@ -220,17 +220,18 @@ export default function HomePage() {
           </div>
         ) : null}
 
-        <div className="relative mx-auto container px-6 py-20 pt-24 sm:py-16 sm:pt-20">
-          <div className="ml-auto flex w-full max-w-xl flex-col items-start text-left">
+        <div className="relative mx-auto container px-6 py-20 pt-28 sm:py-16 sm:pt-32 flex justify-end">
+          {/* Text block pushed to the RIGHT side of the hero */}
+          <div className="w-full max-w-xl text-left">
             {/* Breadcrumb overline */}
-            <div className="flex items-center justify-start gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
+            <div className="flex items-center gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
               <span>Home</span>
               <span>/</span>
               <span>Products</span>
             </div>
 
             {/* Headline — highlighted word on its own line */}
-            <h1 className="text-left text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+            <h1 className="max-w-3xl text-left text-[clamp(1.8rem,4.5vw,3.2rem)] font-bold leading-[1.08] tracking-tight">
               {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
                 <>
                   <span className="text-primary">
@@ -246,30 +247,9 @@ export default function HomePage() {
               )}
             </h1>
 
-            <p className="mt-5 text-left text-base sm:text-lg text-primary leading-relaxed max-w-md">
+            <p className="mt-5 max-w-2xl text-left text-sm text-primary/95 leading-relaxed sm:text-base lg:text-lg">
               {hero.body ?? ""}
             </p>
-
-            {/* CTA buttons */}
-            <div className="mt-8 flex flex-wrap justify-start gap-3">
-              {(hero.buttons ?? [hero.button]).filter(Boolean).map((btn, i) =>
-                btn ? (
-                  <Button
-                    key={btn.href}
-                    asChild
-                    size="lg"
-                    className={
-                      i === 0
-                        ? "bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-full font-semibold"
-                        : "bg-white/10 text-white border border-white/30 hover:bg-white/20 rounded-full font-semibold backdrop-blur-sm"
-                    }
-                    variant={i === 0 ? "secondary" : "ghost"}
-                  >
-                    <Link href={btn.href}>{btn.title}</Link>
-                  </Button>
-                ) : null,
-              )}
-            </div>
           </div>
         </div>
       </section>
