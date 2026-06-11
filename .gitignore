@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large product image folders (served locally, not committed to git)
+/public/images/accessories/
+/public/images/angle materials/
+/public/images/blue/
+/public/images/brush material/
+/public/images/Cheacker Materials/
+/public/images/flatbar/
+/public/images/gaiva/
+/public/images/gold/
+/public/images/mild/
+/public/images/Mirror/
+/public/images/perforated/
+/public/images/solid/
+/public/images/spipe/
+/public/images/square/
+/public/images/stainless/

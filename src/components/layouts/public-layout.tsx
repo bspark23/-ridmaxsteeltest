@@ -105,7 +105,7 @@ export default function PublicLayout({
         >
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <div className="relative h-9 w-[160px]">
+              <div className="relative h-12 w-[200px]">
                 <Image
                   src={
                     isScrolled ? "/images/logo.svg" : "/images/logo-white.svg"

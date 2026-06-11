@@ -116,13 +116,14 @@ export default function AboutPage() {
 
             {/* Image */}
             {whoWeAre.image ? (
-              <div className="relative w-full rounded-2xl overflow-hidden shadow-md bg-gray-100 aspect-[4/3] lg:aspect-auto lg:min-h-[480px]">
+              <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-100">
                 <Image
                   src={whoWeAre.image}
                   alt={whoWeAre.title ?? "Who We Are"}
-                  fill
+                  width={900}
+                  height={700}
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover object-top"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             ) : null}
@@ -157,13 +158,14 @@ export default function AboutPage() {
           <div className="mx-auto container px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left: photo */}
-              <div className="relative w-full rounded-2xl overflow-hidden shadow-md bg-gray-100 aspect-[4/3] lg:aspect-auto lg:min-h-[560px]">
+              <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-100">
                 <Image
                   src="/images/Ridmax-about/img3.png"
                   alt="Ridmax Steel storefront"
-                  fill
+                  width={900}
+                  height={700}
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover object-center"
+                  className="w-full h-auto object-contain"
                 />
               </div>
 

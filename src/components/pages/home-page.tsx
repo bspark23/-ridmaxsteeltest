@@ -205,51 +205,69 @@ export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[105vh] flex items-start overflow-hidden bg-gray-900">
-        {/* Background image only — no tint or overlay */}
+      <section className="relative bg-gray-900 overflow-hidden sm:min-h-[105vh]">
+        {/* Background image — natural height on mobile, cover on sm+ */}
         {hero.image ? (
-          <div className="absolute inset-0">
-            <Image
-              src={hero.image}
-              alt={hero.title ?? "Ridmax Steel"}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
+          <>
+            {/* Mobile: full natural image, not cropped */}
+            <div className="sm:hidden w-full">
+              <Image
+                src={hero.image}
+                alt={hero.title ?? "Ridmax Steel"}
+                width={1200}
+                height={900}
+                priority
+                sizes="100vw"
+                className="w-full h-auto"
+              />
+            </div>
+            {/* Desktop: absolute fill cover */}
+            <div className="hidden sm:block absolute inset-0">
+              <Image
+                src={hero.image}
+                alt={hero.title ?? "Ridmax Steel"}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </>
         ) : null}
 
-        <div className="relative mx-auto container px-6 py-20 pt-28 sm:py-16 sm:pt-32 flex justify-end">
-          {/* Text block pushed to the RIGHT side of the hero */}
-          <div className="w-full max-w-xl text-left">
-            {/* Breadcrumb overline */}
-            <div className="flex items-center gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
-              <span>Home</span>
-              <span>/</span>
-              <span>Products</span>
+        {/* Text overlay — sits on top of the image */}
+        <div className="relative sm:absolute sm:inset-0 flex items-start">
+          <div className="mx-auto container px-6 py-8 pt-24 sm:py-16 sm:pt-32 w-full flex justify-end items-start">
+            {/* Text block pushed to the RIGHT side of the hero */}
+            <div className="w-full max-w-xl text-left">
+              {/* Breadcrumb overline */}
+              <div className="flex items-center gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
+                <span>Home</span>
+                <span>/</span>
+                <span>Products</span>
+              </div>
+
+              {/* Headline — highlighted word on its own line */}
+              <h1 className="max-w-3xl text-left text-[clamp(1.8rem,4.5vw,3.2rem)] font-bold leading-[1.08] tracking-tight">
+                {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
+                  <>
+                    <span className="text-primary">
+                      {hero.title.split(hero.subtitle ?? "Premium Steel")[0]}
+                    </span>
+                    <span className="mt-1 block text-secondary">
+                      {hero.subtitle ?? "Premium Steel"}
+                    </span>
+                    {hero.title.split(hero.subtitle ?? "Premium Steel")[1]}
+                  </>
+                ) : (
+                  (hero.title ?? "")
+                )}
+              </h1>
+
+              <p className="mt-5 max-w-2xl text-left text-sm text-primary/95 leading-relaxed sm:text-base lg:text-lg">
+                {hero.body ?? ""}
+              </p>
             </div>
-
-            {/* Headline — highlighted word on its own line */}
-            <h1 className="max-w-3xl text-left text-[clamp(1.8rem,4.5vw,3.2rem)] font-bold leading-[1.08] tracking-tight">
-              {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
-                <>
-                  <span className="text-primary">
-                    {hero.title.split(hero.subtitle ?? "Premium Steel")[0]}
-                  </span>
-                  <span className="mt-1 block text-secondary">
-                    {hero.subtitle ?? "Premium Steel"}
-                  </span>
-                  {hero.title.split(hero.subtitle ?? "Premium Steel")[1]}
-                </>
-              ) : (
-                (hero.title ?? "")
-              )}
-            </h1>
-
-            <p className="mt-5 max-w-2xl text-left text-sm text-primary/95 leading-relaxed sm:text-base lg:text-lg">
-              {hero.body ?? ""}
-            </p>
           </div>
         </div>
       </section>

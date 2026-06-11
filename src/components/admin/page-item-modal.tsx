@@ -100,6 +100,67 @@ export function PageItemModal({
             />
           </div>
 
+          {/* ── Additional images (carousel) ─────────────────────────── */}
+          <div className='md:col-span-2 rounded-2xl border border-border/60 bg-muted/10 p-4'>
+            <div className='flex items-center justify-between gap-2 mb-3'>
+              <div className='text-sm font-medium'>Additional Images (carousel)</div>
+              <UiButton
+                type='button'
+                variant='secondary'
+                size='sm'
+                onClick={() =>
+                  onItemChange((p) => ({
+                    ...p,
+                    images: [...(p.images ?? []), ''],
+                  }))
+                }
+              >
+                Add image
+              </UiButton>
+            </div>
+
+            {(item.images ?? []).length > 0 ? (
+              <div className='space-y-2'>
+                {(item.images ?? []).map((url, idx) => (
+                  <div key={idx} className='flex items-center gap-2'>
+                    <div className='flex-1'>
+                      <MediaManager
+                        value={toMedia(url, 'image')}
+                        onChange={(m) =>
+                          onItemChange((p) => {
+                            const next = [...(p.images ?? [])];
+                            next[idx] = m?.url || '';
+                            return { ...p, images: next };
+                          })
+                        }
+                        defaultType='image'
+                        triggerLabel={url ? 'Change' : 'Select image'}
+                      />
+                    </div>
+                    <UiButton
+                      type='button'
+                      variant='secondary'
+                      size='sm'
+                      onClick={() =>
+                        onItemChange((p) => {
+                          const next = [...(p.images ?? [])];
+                          next.splice(idx, 1);
+                          return { ...p, images: next.length ? next : undefined };
+                        })
+                      }
+                    >
+                      Remove
+                    </UiButton>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className='text-sm text-muted-foreground'>
+                No additional images. The main image above will be used.
+              </div>
+            )}
+          </div>
+
           <div className='space-y-3 md:col-span-2'>
             <div className='text-sm font-medium'>Thumbnail</div>
             <MediaManager

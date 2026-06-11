@@ -25,6 +25,7 @@ export interface Item {
   subtitle?: string;
   body: string;
   image?: string;
+  images?: string[];
   video?: string;
   thumbnail?: string;
   href?: string;

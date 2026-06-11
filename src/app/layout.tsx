@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 // import Script from 'next/script';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -29,6 +29,10 @@ const inter = localFont({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: THEME_COLOR,
+};
+
 export async function generateMetadata(): Promise<Metadata> {
   try {
     const content = await ContentService.getContent();
@@ -47,7 +51,6 @@ export async function generateMetadata(): Promise<Metadata> {
       metadataBase: new URL(s.siteUrl || 'http://localhost:3000'),
       keywords: s.siteKeywords?.length ? s.siteKeywords : SYSTEM_SETTINGS.siteKeywords,
       authors: [{ name: s.siteAuthor || SYSTEM_SETTINGS.siteAuthor }],
-      themeColor: THEME_COLOR,
       manifest: '/manifest.webmanifest',
       ...(s.ogTitle || s.ogDescription || s.ogImage
         ? {
@@ -88,7 +91,6 @@ function fallbackMetadata(): Metadata {
       default: SYSTEM_SETTINGS.siteName,
     },
     description: SYSTEM_SETTINGS.siteDescription,
-    themeColor: THEME_COLOR,
     manifest: '/manifest.webmanifest',
   };
 }

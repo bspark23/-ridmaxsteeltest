@@ -180,16 +180,30 @@ export const SITE_CONTENT: SiteContent = {
       body: 'All products are available in various sizes and specifications. Contact us for bulk pricing and custom orders.',
       items: [
         {
-          title: 'Strip Materials',
+          title: 'Brush Materials',
           subtitle: 'Available',
-          body: 'Flat steel strips in various widths for structural and fabrication use.',
-          image: '/images/Ridmax-our-products/img1.png',
+          body: '4FT BY 8FT 0.5MM-3MM.',
+          image: '/images/brush material/_KOS6404.jpg',
+          images: [
+            '/images/brush material/_KOS6404.jpg',
+            '/images/brush material/_KOS6405.jpg',
+            '/images/brush material/_KOS6406.jpg',
+            '/images/brush material/_KOS8726.jpg',
+            '/images/brush material/_KOS8728.jpg',
+            '/images/brush material/_KOS8730.jpg',
+          ],
         },
         {
           title: 'Angle Materials',
           subtitle: 'Available',
-          body: 'Standard and equal angle sections for framing and structural support.',
-          image: '/images/Ridmax-our-products/img2.png',
+          body: 'IN VARIOUS SIZES AND THICKNESS.',
+          image: '/images/angle materials/_KOS8847.jpg',
+          images: [
+            '/images/angle materials/_KOS8847.jpg',
+            '/images/angle materials/_KOS8853.jpg',
+            '/images/angle materials/_KOS8877 copy.jpg',
+            '/images/angle materials/_KOS8887.jpg',
+          ],
         },
         {
           title: 'Checker Materials',
