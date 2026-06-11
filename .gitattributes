@@ -1,0 +1,15 @@
+public/images/accessories/* filter=lfs diff=lfs merge=lfs -text
+public/images/angle[[:space:]]materials/* filter=lfs diff=lfs merge=lfs -text
+public/images/blue/* filter=lfs diff=lfs merge=lfs -text
+public/images/brush[[:space:]]material/* filter=lfs diff=lfs merge=lfs -text
+public/images/Cheacker[[:space:]]Materials/* filter=lfs diff=lfs merge=lfs -text
+public/images/flatbar/* filter=lfs diff=lfs merge=lfs -text
+public/images/gaiva/* filter=lfs diff=lfs merge=lfs -text
+public/images/gold/* filter=lfs diff=lfs merge=lfs -text
+public/images/mild/* filter=lfs diff=lfs merge=lfs -text
+public/images/Mirror/* filter=lfs diff=lfs merge=lfs -text
+public/images/perforated/* filter=lfs diff=lfs merge=lfs -text
+public/images/solid/* filter=lfs diff=lfs merge=lfs -text
+public/images/spipe/* filter=lfs diff=lfs merge=lfs -text
+public/images/square/* filter=lfs diff=lfs merge=lfs -text
+public/images/stainless/* filter=lfs diff=lfs merge=lfs -text
