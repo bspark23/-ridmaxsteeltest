@@ -103,22 +103,23 @@ function ServiceCard({ item }: { item: Item }) {
   return (
     <Link
       href={item.href ?? "/services"}
-      className="group relative block overflow-hidden rounded-2xl h-72 shadow hover:shadow-lg transition-shadow"
+      className="group block overflow-hidden rounded-xl bg-white shadow hover:shadow-md transition-shadow"
     >
-      {item.image ? (
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          sizes="(min-width: 1024px) 33vw, 100vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      ) : null}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-        <h3 className="font-bold text-lg">{item.title}</h3>
-        <p className="mt-1 text-xs text-white/80 line-clamp-2">{item.body}</p>
-        <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-secondary">
+      <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : null}
+      </div>
+      <div className="p-4">
+        <h3 className="font-semibold text-gray-900 text-sm">{item.title}</h3>
+        <p className="mt-1 text-xs text-gray-500 line-clamp-2">{item.body}</p>
+        <span className="mt-3 inline-flex items-center gap-1 rounded-full text-xs font-semibold text-secondary">
           Learn more <ChevronRight className="h-3 w-3" />
         </span>
       </div>
@@ -240,21 +241,14 @@ export default function HomePage() {
           <div className="mx-auto container px-6 py-8 pt-24 sm:py-16 sm:pt-32 w-full flex justify-end items-start">
             {/* Text block pushed to the RIGHT side of the hero */}
             <div className="w-full max-w-xl text-left">
-              {/* Breadcrumb overline */}
-              <div className="flex items-center gap-2 mb-4 text-white/70 text-xs font-medium tracking-wide uppercase">
-                <span>Home</span>
-                <span>/</span>
-                <span>Products</span>
-              </div>
-
-              {/* Headline — highlighted word on its own line */}
-              <h1 className="max-w-3xl text-left text-[clamp(1.8rem,4.5vw,3.2rem)] font-bold leading-[1.08] tracking-tight">
+              {/* Headline with highlighted text inline */}
+              <h1 className="max-w-3xl text-left text-[clamp(1.8rem,4.5vw,3.2rem)] font-bold leading-[1.08] tracking-tight text-white">
                 {hero.title?.includes(hero.subtitle ?? "Premium Steel") ? (
                   <>
-                    <span className="text-primary">
+                    <span>
                       {hero.title.split(hero.subtitle ?? "Premium Steel")[0]}
                     </span>
-                    <span className="mt-1 block text-secondary">
+                    <span className="text-secondary">
                       {hero.subtitle ?? "Premium Steel"}
                     </span>
                     {hero.title.split(hero.subtitle ?? "Premium Steel")[1]}
@@ -264,7 +258,7 @@ export default function HomePage() {
                 )}
               </h1>
 
-              <p className="mt-5 max-w-2xl text-left text-sm text-primary/95 leading-relaxed sm:text-base lg:text-lg">
+              <p className="mt-5 max-w-2xl text-left text-sm text-white leading-relaxed sm:text-base lg:text-lg">
                 {hero.body ?? ""}
               </p>
             </div>
