@@ -8,14 +8,17 @@ import {
   Users,
   Tag,
   ArrowRight,
+  ChevronLeft,
   ChevronRight,
   Star,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { Button } from "@/components/ui/button";
 import { Item } from "@/models/content";
 import useSWR from "swr";
 import { Post, PostPaginatedResult } from "@/models/post";
+import { getProductSlides } from "@/lib/product-images";
 
 // ─── Icon map for "Why Choose Us" cards ─────────────────────────────────────
 const WHY_ICONS: Record<string, React.ReactNode> = {
@@ -39,28 +42,110 @@ function SectionLabel({ text }: { text: string }) {
 }
 
 // ─── Product Card ────────────────────────────────────────────────────────────
-function ProductCard({ item }: { item: Item }) {
+function ProductImageCarousel({
+  item,
+  catalogueItems,
+}: {
+  item: Item;
+  catalogueItems: Item[];
+}) {
+  const slides = getProductSlides(item, catalogueItems);
+  const [index, setIndex] = useState(0);
+  const multi = slides.length > 1;
+
+  useEffect(() => {
+    if (!multi) return;
+    const id = setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length);
+    }, 3000);
+
+    return () => clearInterval(id);
+  }, [multi, slides.length]);
+
+  if (slides.length === 0) {
+    return <div className="w-full aspect-[4/3] bg-gray-100" />;
+  }
+
   return (
-    <Link
-      href={item.href ?? "/products"}
-      className="group block overflow-hidden rounded-xl bg-white shadow hover:shadow-md transition-shadow"
-    >
-      <div className="relative h-48 w-full overflow-hidden bg-gray-100">
-        {item.image ? (
+    <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden select-none">
+      {slides.map((src, i) => (
+        <div
+          key={src}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            i === index ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
           <Image
-            src={item.image}
-            alt={item.title}
+            src={src}
+            alt={`${item.title} ${i + 1}`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover"
           />
-        ) : null}
-      </div>
+        </div>
+      ))}
+
+      {multi ? (
+        <>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              setIndex((current) => (current - 1 + slides.length) % slides.length);
+            }}
+            aria-label="Previous image"
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              setIndex((current) => (current + 1) % slides.length);
+            }}
+            aria-label="Next image"
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          <div className="absolute bottom-2 left-0 right-0 z-10 flex justify-center gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setIndex(i);
+                }}
+                aria-label={`Image ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === index ? "w-5 bg-white" : "w-1.5 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+          <div className="absolute right-2 top-2 z-10 rounded-full bg-black/50 px-2 py-0.5 text-xs font-medium text-white">
+            {index + 1}/{slides.length}
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+function ProductCard({
+  item,
+  catalogueItems,
+}: {
+  item: Item;
+  catalogueItems: Item[];
+}) {
+  return (
+    <div className="group overflow-hidden rounded-xl border border-primary/15 bg-white transition-colors hover:border-primary/25">
+      <ProductImageCarousel item={item} catalogueItems={catalogueItems} />
       <div className="p-4">
         <h3 className="font-semibold text-gray-900 text-sm">{item.title}</h3>
         <p className="mt-1 text-xs text-gray-500 line-clamp-2">{item.body}</p>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -68,7 +153,7 @@ function ProductCard({ item }: { item: Item }) {
 function WhyCard({ item }: { item: Item }) {
   const icon = item.subtitle ? (WHY_ICONS[item.subtitle] ?? null) : null;
   return (
-    <div className="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <div className="p-8 rounded-2xl bg-white border border-primary/15 transition-colors hover:border-primary/25">
       {/* Icon badge */}
       <div className="flex items-center justify-center h-11 w-11 rounded-xl bg-primary/10 text-primary mb-5">
         {icon}
@@ -84,7 +169,7 @@ function WhyCard({ item }: { item: Item }) {
 // ─── Stat Card — white rounded card with star icon ───────────────────────────
 function StatCard({ item }: { item: Item }) {
   return (
-    <div className="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
+    <div className="flex items-center gap-4 bg-white rounded-2xl border border-primary/15 px-6 py-5">
       <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
         <Star className="h-4 w-4" />
       </div>
@@ -103,7 +188,7 @@ function ServiceCard({ item }: { item: Item }) {
   return (
     <Link
       href={item.href ?? "/services"}
-      className="group block overflow-hidden rounded-xl bg-white shadow hover:shadow-md transition-shadow"
+      className="group block overflow-hidden rounded-xl border border-primary/15 bg-white transition-colors hover:border-primary/25"
     >
       <div className="relative h-48 w-full overflow-hidden bg-gray-100">
         {item.image ? (
@@ -141,7 +226,7 @@ function BlogCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block overflow-hidden rounded-2xl bg-white shadow hover:shadow-md transition-shadow"
+      className="group block overflow-hidden rounded-2xl border border-primary/15 bg-white transition-colors hover:border-primary/25"
     >
       <div className="relative h-52 w-full overflow-hidden bg-gray-100">
         <Image
@@ -192,6 +277,7 @@ export default function HomePage() {
 
   const hero = siteContent?.home?.section1 ?? {};
   const products = siteContent?.home?.section2 ?? {};
+  const productCatalogueItems = siteContent?.products?.section2?.items ?? [];
   const whyUs = siteContent?.home?.section3 ?? {};
   const stats = siteContent?.home?.section4 ?? {};
   const services = siteContent?.home?.section5 ?? {};
@@ -300,7 +386,11 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
             {(products.items ?? []).map((item) => (
-              <ProductCard key={item.title} item={item} />
+              <ProductCard
+                key={item.title}
+                item={item}
+                catalogueItems={productCatalogueItems}
+              />
             ))}
           </div>
 

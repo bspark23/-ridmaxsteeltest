@@ -164,9 +164,6 @@ function ProductImageCarousel({ item }: { item: Item }) {
   const [index, setIndex] = useState(0);
   const multi = slides.length > 1;
 
-  // Reset index if item changes
-  useEffect(() => { setIndex(0); }, [item.title]);
-
   // Auto-advance every 3 s
   useEffect(() => {
     if (!multi) return;
@@ -203,7 +200,7 @@ function ProductImageCarousel({ item }: { item: Item }) {
           <button
             onClick={(e) => { e.preventDefault(); setIndex((i) => (i - 1 + slides.length) % slides.length); }}
             aria-label="Previous image"
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-8 w-8 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors shadow"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-8 w-8 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -212,7 +209,7 @@ function ProductImageCarousel({ item }: { item: Item }) {
           <button
             onClick={(e) => { e.preventDefault(); setIndex((i) => (i + 1) % slides.length); }}
             aria-label="Next image"
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-8 w-8 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors shadow"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-8 w-8 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -244,7 +241,7 @@ function ProductImageCarousel({ item }: { item: Item }) {
 // ─── Product card ─────────────────────────────────────────────────────────────
 function ProductCard({ item }: { item: Item }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+    <div className="bg-white rounded-xl overflow-hidden border border-primary/15 transition-colors hover:border-primary/25">
       <ProductImageCarousel item={item} />
       <div className="p-4">
         <h3 className="font-semibold text-gray-900 text-sm leading-snug">{item.title}</h3>

@@ -20,7 +20,7 @@ function FeaturedCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+      className="group block overflow-hidden rounded-2xl border border-primary/15 transition-colors hover:border-primary/25"
     >
       <div className="grid md:grid-cols-2">
         {/* Image side */}
@@ -96,7 +96,7 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+      className="group block overflow-hidden rounded-2xl bg-white border border-primary/15 transition-colors hover:border-primary/25"
     >
       <div className="relative h-48 w-full bg-gray-100 overflow-hidden">
         <Image

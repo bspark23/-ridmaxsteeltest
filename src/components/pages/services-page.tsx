@@ -27,7 +27,7 @@ function ServiceRow({ item, index }: { item: Item; index: number }) {
         >
           {/* Image */}
           <div
-            className={`relative w-full rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100 ${!isEven ? "lg:col-start-2" : ""}`}
+            className={`relative w-full rounded-2xl overflow-hidden border border-primary/15 aspect-[4/3] bg-gray-100 ${!isEven ? "lg:col-start-2" : ""}`}
           >
             {item.image ? (
               <Image
@@ -137,7 +137,7 @@ export default function ServicesPage() {
           <div className="mx-auto container px-6">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               {/* Left: image */}
-              <div className="relative w-full rounded-2xl overflow-hidden shadow-md aspect-[4/3] lg:aspect-auto lg:min-h-[480px] bg-gray-100">
+              <div className="relative w-full rounded-2xl overflow-hidden border border-primary/15 aspect-[4/3] lg:aspect-auto lg:min-h-[480px] bg-gray-100">
                 {whoWeServe.image ? (
                   <Image
                     src={whoWeServe.image}

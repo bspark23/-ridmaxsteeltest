@@ -34,7 +34,7 @@ function RelatedCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+      className="group block overflow-hidden rounded-2xl bg-white border border-primary/15 transition-colors hover:border-primary/25"
     >
       <div className="relative h-44 w-full bg-gray-100 overflow-hidden">
         <Image
@@ -223,7 +223,7 @@ export default function BlogDetailsPage({ post }: { post: Post }) {
             </p>
 
             {!isAuthenticated ? (
-              <div className="rounded-2xl border bg-white p-6">
+              <div className="rounded-2xl border border-primary/15 bg-white p-6">
                 <p className="text-sm text-gray-500">
                   You must be signed in to comment.
                 </p>
@@ -232,7 +232,7 @@ export default function BlogDetailsPage({ post }: { post: Post }) {
                 </Button>
               </div>
             ) : (
-              <div className="rounded-2xl border bg-white p-6">
+              <div className="rounded-2xl border border-primary/15 bg-white p-6">
                 <p className="text-sm font-semibold text-gray-900 mb-3">
                   Add a comment
                 </p>
@@ -264,7 +264,7 @@ export default function BlogDetailsPage({ post }: { post: Post }) {
             ) : null}
 
             {!commentsLoading && (comments ?? []).length === 0 ? (
-              <Empty className="mt-6 rounded-2xl border bg-white">
+              <Empty className="mt-6 rounded-2xl border border-primary/15 bg-white">
                 <EmptyHeader>
                   <EmptyTitle>No comments yet</EmptyTitle>
                   <EmptyDescription>
@@ -277,7 +277,7 @@ export default function BlogDetailsPage({ post }: { post: Post }) {
             {(comments ?? []).length > 0 ? (
               <div className="mt-6 space-y-4">
                 {(comments ?? []).map((c) => (
-                  <div key={c.id} className="rounded-2xl border bg-white p-5">
+                  <div key={c.id} className="rounded-2xl border border-primary/15 bg-white p-5">
                     <div className="flex items-start gap-3">
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold flex-shrink-0">
                         {initials(c.author?.name)}

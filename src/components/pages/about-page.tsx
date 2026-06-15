@@ -17,7 +17,7 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
 // ─── Stat Card (same style as homepage) ─────────────────────────────────────
 function StatCard({ item }: { item: Item }) {
   return (
-    <div className="flex items-center gap-4 bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5">
+    <div className="flex items-center gap-4 bg-white rounded-2xl border border-primary/15 px-6 py-5">
       <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
         <Star className="h-4 w-4" />
       </div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
             {/* Image */}
             {whoWeAre.image ? (
-              <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-100">
+              <div className="w-full rounded-2xl overflow-hidden border border-primary/15 bg-gray-100">
                 <Image
                   src={whoWeAre.image}
                   alt={whoWeAre.title ?? "Who We Are"}
@@ -158,7 +158,7 @@ export default function AboutPage() {
           <div className="mx-auto container px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left: photo */}
-              <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-100">
+              <div className="w-full rounded-2xl overflow-hidden border border-primary/15 bg-gray-100">
                 <Image
                   src="/images/Ridmax-about/img3.png"
                   alt="Ridmax Steel storefront"

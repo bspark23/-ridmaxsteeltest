@@ -6,7 +6,6 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
 import { Button } from "@/components/ui/button";
 import { SubscriberService } from "@/services/subscriber.service";
-import type { Subscriber } from "@/models/subscriber";
 
 // ─── Icon map for contact detail items ───────────────────────────────────────
 const CONTACT_ICONS: Record<string, React.ReactNode> = {
@@ -33,7 +32,7 @@ function WhatsAppModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6"
+        className="bg-white rounded-2xl border border-primary/15 w-full max-w-sm p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 mb-1">
