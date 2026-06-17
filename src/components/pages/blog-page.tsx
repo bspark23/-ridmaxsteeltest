@@ -36,8 +36,8 @@ function FeaturedCard({ post }: { post: Post }) {
         </div>
 
         {/* Text side — amber background */}
-        <div className="bg-secondary p-8 flex flex-col justify-center">
-          <div className="flex items-center gap-2 mb-3">
+        <div className="bg-secondary p-5 flex flex-col justify-center sm:p-8">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
             {post.category?.name ? (
               <span className="text-xs font-semibold bg-primary text-white px-3 py-1 rounded-full">
                 {post.category.name}
@@ -61,8 +61,8 @@ function FeaturedCard({ post }: { post: Post }) {
             </p>
           ) : null}
 
-          <div className="mt-6 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs text-secondary-foreground/70">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs text-secondary-foreground/70">
               {post.author?.name ? (
                 <span className="flex items-center gap-1">
                   <span className="h-5 w-5 rounded-full bg-primary/20 inline-flex items-center justify-center text-primary font-bold text-[10px]">
@@ -78,7 +78,7 @@ function FeaturedCard({ post }: { post: Post }) {
                 </span>
               ) : null}
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-primary bg-white rounded-full px-4 py-1.5">
+            <span className="inline-flex w-fit items-center gap-1 text-xs font-bold text-primary bg-white rounded-full px-4 py-1.5">
               Read Article <ArrowRight className="h-3 w-3" />
             </span>
           </div>
@@ -245,11 +245,11 @@ export default function BlogPage() {
 
           {/* Pagination */}
           {pagination && pagination.totalPages > 1 ? (
-            <div className="mt-12 flex items-center justify-between gap-4">
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-gray-500">
                 Page {pagination.page} of {pagination.totalPages}
               </p>
-              <div className="flex items-center gap-2">
+              <div className="grid w-full grid-cols-2 gap-2 sm:w-auto">
                 <Link
                   className={cn(
                     "rounded-full border px-5 py-2 text-sm font-semibold transition-colors",

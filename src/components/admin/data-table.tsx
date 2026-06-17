@@ -44,14 +44,14 @@ export function DataTable<TData>({
 
   return (
     <div className="space-y-3 text-white">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <Input
           value={globalFilter ?? ''}
           onChange={(e) => setGlobalFilter(e.target.value)}
           placeholder={searchPlaceholder}
-          className="max-w-sm border-white/10 bg-white/[0.03] text-white placeholder:text-white/40 shadow-none"
+          className="w-full border-white/10 bg-white/[0.03] text-white placeholder:text-white/40 shadow-none sm:max-w-sm"
         />
-        <div className="ml-auto flex items-center gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:ml-auto sm:flex sm:items-center">
           <Button
             variant="outline"
             size="sm"
@@ -73,8 +73,8 @@ export function DataTable<TData>({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-white/[0.02]">
-        <Table>
+      <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
+        <Table className="min-w-[720px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="border-white/10">

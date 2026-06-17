@@ -8,17 +8,15 @@ import {
   Users,
   Tag,
   ArrowRight,
-  ChevronLeft,
   ChevronRight,
   Star,
 } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { Button } from "@/components/ui/button";
 import { Item } from "@/models/content";
 import useSWR from "swr";
 import { Post, PostPaginatedResult } from "@/models/post";
-import { getProductSlides } from "@/lib/product-images";
+import { getProductSlides, getProductSlug } from "@/lib/product-images";
 
 // ─── Icon map for "Why Choose Us" cards ─────────────────────────────────────
 const WHY_ICONS: Record<string, React.ReactNode> = {
@@ -42,95 +40,6 @@ function SectionLabel({ text }: { text: string }) {
 }
 
 // ─── Product Card ────────────────────────────────────────────────────────────
-function ProductImageCarousel({
-  item,
-  catalogueItems,
-}: {
-  item: Item;
-  catalogueItems: Item[];
-}) {
-  const slides = getProductSlides(item, catalogueItems);
-  const [index, setIndex] = useState(0);
-  const multi = slides.length > 1;
-
-  useEffect(() => {
-    if (!multi) return;
-    const id = setInterval(() => {
-      setIndex((current) => (current + 1) % slides.length);
-    }, 3000);
-
-    return () => clearInterval(id);
-  }, [multi, slides.length]);
-
-  if (slides.length === 0) {
-    return <div className="w-full aspect-[4/3] bg-gray-100" />;
-  }
-
-  return (
-    <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden select-none">
-      {slides.map((src, i) => (
-        <div
-          key={src}
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            i === index ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <Image
-            src={src}
-            alt={`${item.title} ${i + 1}`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-      ))}
-
-      {multi ? (
-        <>
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              setIndex((current) => (current - 1 + slides.length) % slides.length);
-            }}
-            aria-label="Previous image"
-            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              setIndex((current) => (current + 1) % slides.length);
-            }}
-            aria-label="Next image"
-            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-          <div className="absolute bottom-2 left-0 right-0 z-10 flex justify-center gap-1.5">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={(event) => {
-                  event.preventDefault();
-                  setIndex(i);
-                }}
-                aria-label={`Image ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === index ? "w-5 bg-white" : "w-1.5 bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="absolute right-2 top-2 z-10 rounded-full bg-black/50 px-2 py-0.5 text-xs font-medium text-white">
-            {index + 1}/{slides.length}
-          </div>
-        </>
-      ) : null}
-    </div>
-  );
-}
-
 function ProductCard({
   item,
   catalogueItems,
@@ -138,12 +47,30 @@ function ProductCard({
   item: Item;
   catalogueItems: Item[];
 }) {
+  const slides = getProductSlides(item, catalogueItems);
+  const imageUrl = slides[0] ?? item.image ?? "/images/placeholder.jpg";
+  const slug = getProductSlug(item, catalogueItems);
+
   return (
-    <div className="group overflow-hidden rounded-xl border border-primary/15 bg-white transition-colors hover:border-primary/25">
-      <ProductImageCarousel item={item} catalogueItems={catalogueItems} />
-      <div className="p-4">
-        <h3 className="font-semibold text-gray-900 text-sm">{item.title}</h3>
-        <p className="mt-1 text-xs text-gray-500 line-clamp-2">{item.body}</p>
+    <div className="overflow-hidden rounded-3xl bg-white shadow-sm transition hover:shadow-md">
+      <div className="overflow-hidden rounded-3xl bg-gray-100">
+        <div className="relative aspect-[4/3] w-full">
+          <Image
+            src={imageUrl}
+            alt={item.title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
+      <div className="p-5">
+        <Link
+          href={`/products/${slug}`}
+          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
+        >
+          View Product
+        </Link>
       </div>
     </div>
   );
@@ -169,11 +96,11 @@ function WhyCard({ item }: { item: Item }) {
 // ─── Stat Card — white rounded card with star icon ───────────────────────────
 function StatCard({ item }: { item: Item }) {
   return (
-    <div className="flex items-center gap-4 bg-white rounded-2xl border border-primary/15 px-6 py-5">
+    <div className="flex min-w-0 items-center gap-3 bg-white rounded-2xl border border-primary/15 px-4 py-5 sm:gap-4 sm:px-6">
       <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
         <Star className="h-4 w-4" />
       </div>
-      <div>
+      <div className="min-w-0">
         <p className="text-2xl font-bold text-primary leading-none">
           {item.title}
         </p>
@@ -384,7 +311,7 @@ export default function HomePage() {
             ) : null}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 sm:grid-cols-3">
             {(products.items ?? []).map((item) => (
               <ProductCard
                 key={item.title}
@@ -431,7 +358,7 @@ export default function HomePage() {
 
           {/* Stats row — white cards with star icon */}
           {(stats.items ?? []).length > 0 ? (
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="mt-12 grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto">
               {(stats.items ?? []).map((item) => (
                 <StatCard key={item.title} item={item} />
               ))}

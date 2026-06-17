@@ -130,6 +130,42 @@ function keyFor(title: string) {
   return title.toLowerCase().trim();
 }
 
+export function slugifyTitle(title: string) {
+  return keyFor(title)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getProductCategory(item: Item) {
+  const key = keyFor(item.title);
+  return PRODUCT_ALIASES[key] ?? key;
+}
+
+export function getProductSlug(item: Item, catalogueItems: Item[] = []) {
+  const baseSlug = slugifyTitle(item.title);
+  const sameTitleItems = catalogueItems.filter(
+    (candidate) => slugifyTitle(candidate.title) === baseSlug,
+  );
+  if (sameTitleItems.length <= 1) return baseSlug;
+  const index = sameTitleItems.findIndex((candidate) => candidate === item);
+  return index <= 0 ? baseSlug : `${baseSlug}-${index + 1}`;
+}
+
+export function getProductSlugByIndex(
+  item: Item,
+  catalogueItems: Item[] = [],
+  itemIndex: number,
+) {
+  const baseSlug = slugifyTitle(item.title);
+  const duplicateNumber =
+    catalogueItems
+      .slice(0, itemIndex + 1)
+      .filter((candidate) => slugifyTitle(candidate.title) === baseSlug)
+      .length;
+
+  return duplicateNumber <= 1 ? baseSlug : `${baseSlug}-${duplicateNumber}`;
+}
+
 export function getProductSlides(item: Item, catalogueItems: Item[] = []) {
   if (item.images && item.images.length > 0) return item.images;
 

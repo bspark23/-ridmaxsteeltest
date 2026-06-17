@@ -217,7 +217,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                     <Bell className="h-5 w-5 text-white" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[380px] sm:w-[420px]">
+                <SheetContent side="right" className="w-[calc(100vw-1rem)] sm:w-[420px]">
                   <SheetHeader>
                     <SheetTitle>Notifications</SheetTitle>
                     <SheetDescription>
@@ -238,7 +238,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               </Sheet>
             </div>
           </header>
-          <main className="flex-1 p-4 md:p-6">{children}</main>
+          <main className="min-w-0 flex-1 overflow-x-hidden p-4 md:p-6">{children}</main>
         </SidebarInset>
       </SidebarProvider>
     </div>

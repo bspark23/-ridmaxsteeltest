@@ -28,11 +28,11 @@ function WhatsAppModal({
   if (!open) return null;
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 py-6"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl border border-primary/15 w-full max-w-sm p-6"
+        className="max-h-[calc(100svh-3rem)] w-full max-w-sm overflow-y-auto rounded-2xl border border-primary/15 bg-white p-5 sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 mb-1">
@@ -194,11 +194,11 @@ export default function ContactPage() {
                     ? (CONTACT_ICONS[item.subtitle] ?? null)
                     : null;
                   return (
-                    <div key={item.title} className="flex gap-4">
+                    <div key={item.title} className="flex min-w-0 gap-4">
                       <div className="flex-shrink-0 flex items-center justify-center h-11 w-11 rounded-xl bg-primary/10 text-primary">
                         {icon}
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <h4 className="font-bold text-gray-900 text-sm mb-1">
                           {item.title}
                         </h4>

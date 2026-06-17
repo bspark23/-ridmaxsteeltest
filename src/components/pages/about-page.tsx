@@ -17,11 +17,11 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
 // ─── Stat Card (same style as homepage) ─────────────────────────────────────
 function StatCard({ item }: { item: Item }) {
   return (
-    <div className="flex items-center gap-4 bg-white rounded-2xl border border-primary/15 px-6 py-5">
+    <div className="flex min-w-0 items-center gap-3 bg-white rounded-2xl border border-primary/15 px-4 py-5 sm:gap-4 sm:px-6">
       <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
         <Star className="h-4 w-4" />
       </div>
-      <div>
+      <div className="min-w-0">
         <p className="text-2xl font-bold text-primary leading-none">
           {item.title}
         </p>
@@ -35,11 +35,11 @@ function StatCard({ item }: { item: Item }) {
 function InfoCard({ item }: { item: Item }) {
   const icon = item.subtitle ? (SECTION_ICONS[item.subtitle] ?? null) : null;
   return (
-    <div className="flex gap-4">
+    <div className="flex min-w-0 gap-4">
       <div className="flex-shrink-0 flex items-center justify-center h-11 w-11 rounded-xl bg-primary/10 text-primary mt-0.5">
         {icon}
       </div>
-      <div>
+      <div className="min-w-0">
         <h3 className="font-bold text-primary text-base mb-1">{item.title}</h3>
         <p className="text-sm text-gray-500 leading-relaxed">{item.body}</p>
       </div>
@@ -184,7 +184,7 @@ export default function AboutPage() {
       {(statsSection.items ?? []).length > 0 ? (
         <section className="py-12 bg-gray-50">
           <div className="mx-auto container px-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto">
               {(statsSection.items ?? []).map((item) => (
                 <StatCard key={item.title} item={item} />
               ))}

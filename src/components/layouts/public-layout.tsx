@@ -94,10 +94,10 @@ export default function PublicLayout({
   return (
     <>
       {/* HEADER */}
-      <nav className="fixed inset-x-0 top-2.5 z-50 px-4 transition-all duration-300 sm:px-6">
+      <nav className="fixed inset-x-0 top-2.5 z-50 px-3 transition-all duration-300 sm:px-6">
         <div
           className={cn(
-            "mx-auto container rounded-xl md:rounded-full px-4 py-2.5 sm:px-6",
+            "mx-auto container rounded-xl md:rounded-full px-3 py-2.5 sm:px-6",
             isScrolled
               ? "border border-black/10 bg-white/85 backdrop-blur-xl"
               : "border border-transparent bg-primary",
@@ -105,7 +105,7 @@ export default function PublicLayout({
         >
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <div className="relative h-12 w-[200px]">
+              <div className="relative h-10 w-[150px] sm:h-12 sm:w-[200px]">
                 <Image
                   src={
                     isScrolled ? "/images/logo.svg" : "/images/logo-white.svg"
@@ -222,7 +222,7 @@ export default function PublicLayout({
       {/* FOOTER */}
       <footer className="bg-white py-14 text-black-foreground overflow-x-clip">
         <div className="mx-auto container px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12 mb-12">
             <div className="space-y-4 min-w-0">
               <Link href="/" className="flex items-center gap-2">
                 <Image
@@ -262,9 +262,9 @@ export default function PublicLayout({
                   <ul className="space-y-2 text-sm break-words">
                     {Object.entries(getBasicContactInfo(contact)).map(
                       ([key, value]) => (
-                        <li key={key} className="flex items-center space-x-2">
+                        <li key={key} className="flex items-start gap-2">
                           <SocialIcon label={key} color="text-primary" />
-                          <p className="hover:text-primary transition-colors break-words">
+                          <p className="min-w-0 hover:text-primary transition-colors break-words">
                             {value}
                           </p>
                         </li>
