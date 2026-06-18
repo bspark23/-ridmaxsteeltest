@@ -52,8 +52,8 @@ function ProductCard({
   const slug = getProductSlug(item, catalogueItems);
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm transition hover:shadow-md">
-      <div className="overflow-hidden rounded-3xl bg-gray-100">
+    <div className="overflow-hidden rounded-3xl bg-white border border-primary/25 transition hover:border-primary/50">
+      <div className="overflow-hidden rounded-t-3xl bg-gray-100">
         <div className="relative aspect-[4/3] w-full">
           <Image
             src={imageUrl}
@@ -65,9 +65,13 @@ function ProductCard({
         </div>
       </div>
       <div className="p-5">
+        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+        {item.body ? (
+          <p className="mt-2 text-sm text-gray-500 line-clamp-3">{item.body}</p>
+        ) : null}
         <Link
           href={`/products/${slug}`}
-          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
+          className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
         >
           View Product
         </Link>
@@ -297,8 +301,8 @@ export default function HomePage() {
             {products.button ? (
               <Button
                 asChild
-                variant="secondary"
-                className="rounded-full flex-shrink-0"
+                variant="default"
+                className="rounded-full flex-shrink-0 bg-primary text-white hover:bg-primary/90"
               >
                 <Link
                   href={products.button.href}

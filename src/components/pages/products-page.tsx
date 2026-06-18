@@ -22,7 +22,7 @@ function ProductImageCarousel({
   const imageUrl = slides[index] ?? item.image ?? "/images/placeholder.jpg";
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-gray-100">
+    <div className="overflow-hidden rounded-t-3xl bg-gray-100">
       <div className="relative w-full aspect-[4/3]">
         <Image
           src={imageUrl}
@@ -90,12 +90,16 @@ function ProductCard({
   const slug = getProductSlugByIndex(item, catalogueItems, itemIndex);
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm transition hover:shadow-md">
+    <div className="overflow-hidden rounded-3xl bg-white border border-primary/25 transition hover:border-primary/50">
       <ProductImageCarousel item={item} catalogueItems={catalogueItems} />
       <div className="p-5">
+        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+        {item.body ? (
+          <p className="mt-2 text-sm text-gray-500 line-clamp-3">{item.body}</p>
+        ) : null}
         <Link
           href={`/products/${slug}`}
-          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
+          className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary/90"
         >
           View Product
         </Link>

@@ -142,21 +142,28 @@ export default function PublicLayout({
 
             <div className="flex items-center justify-end gap-2">
               <div className="hidden md:flex items-center gap-3">
-                {actionLinks.slice(0, 2).map((link, idx) => (
-                  <Button
-                    key={link.label}
-                    asChild
-                    className={cn(
-                      "rounded-full",
-                      idx === 0 &&
-                        !isScrolled &&
-                        "bg-white text-black hover:bg-white/80",
-                    )}
-                    variant={idx === 1 ? "default" : "secondary"}
-                  >
-                    <Link href={link.href}>{link.label}</Link>
-                  </Button>
-                ))}
+                {actionLinks.slice(0, 2).map((link, idx) => {
+                  const isContactLink =
+                    link.label.toLowerCase().includes("contact") ||
+                    link.href.toLowerCase().includes("contact");
+                  return (
+                    <Button
+                      key={link.label}
+                      asChild
+                      className={cn(
+                        "rounded-full",
+                        isContactLink && isScrolled
+                          ? "bg-primary text-white hover:bg-primary/80"
+                          : idx === 0 &&
+                              !isScrolled &&
+                              "bg-white text-black hover:bg-white/80",
+                      )}
+                      variant={idx === 1 ? "default" : "secondary"}
+                    >
+                      <Link href={link.href}>{link.label}</Link>
+                    </Button>
+                  );
+                })}
               </div>
 
               <button
