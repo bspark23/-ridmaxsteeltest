@@ -135,7 +135,7 @@ function ServiceCard({ item }: { item: Item }) {
       <div className="p-4">
         <h3 className="font-semibold text-gray-900 text-sm">{item.title}</h3>
         <p className="mt-1 text-xs text-gray-500 line-clamp-2">{item.body}</p>
-        <span className="mt-3 inline-flex items-center gap-1 rounded-full text-xs font-semibold text-secondary">
+        <span className="mt-3 inline-flex items-center gap-1 rounded-full text-xs font-semibold text-primary">
           Learn more <ChevronRight className="h-3 w-3" />
         </span>
       </div>
