@@ -29,7 +29,6 @@ function FeaturedCard({ post }: { post: Post }) {
             src={post.featuredMedia?.url ?? "/images/placeholder.jpg"}
             alt={post.featuredMedia?.alt ?? post.title}
             fill
-            priority
             sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
